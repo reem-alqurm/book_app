@@ -6,7 +6,7 @@ const superagent = require('superagent');
 
 // Application Setup
 const app = express();
-const PORT = process.env.PORT ;
+const PORT = process.env.PORT || 3000 ;
 
 // Application Middleware
 app.use(express.urlencoded({ extended: true }));
