@@ -6,7 +6,7 @@ const superagent = require('superagent');
 
 // Application Setup
 const app = express();
-const PORT = process.env.PORT || 3000 ;
+const PORT = process.env.PORT || 3001 ;
 
 // Application Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -63,10 +63,15 @@ function createSearch(request, response) {
 
   superagent.get(url)
     .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
-    .then(results => response.render('pages/show', { searchResults: results }));
+    .then(results => response.render('pages/show', { searchResults: results })).catch(internalserverError(response));
   // how will we handle errors?
 }
-
+function internalserverError(response){
+    return (error)=>{
+        console.log(error);
+        res.status(500).send('somthing Went wrong');
+    }
+}
 
 
 
