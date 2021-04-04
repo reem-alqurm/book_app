@@ -34,8 +34,12 @@ app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 // Only show part of this to get students started
 function Book(info) {
   const placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
-
   this.title = info.title || 'No title available'; // shortcircuit
+  this.img=info.imageLinks|| placeholderImage;
+  this.description = info.description|| 'No description available';
+  this.authers= info.authers|| 'No authers available';
+
+
 
 }
 
@@ -64,7 +68,6 @@ function createSearch(request, response) {
   superagent.get(url)
     .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
     .then(results => response.render('pages/show', { searchResults: results })).catch(internalserverError(response));
-  // how will we handle errors?
 }
 function internalserverError(response){
     return (error)=>{
