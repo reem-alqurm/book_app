@@ -2,19 +2,34 @@
 <html lang="en">
   <head>
     <title>Book Collection</title>
-    <link rel="stylesheet" href="styles/base.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento&family=Special+Elite&display=swap" rel="stylesheet">     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="stylesheet" href="styles/reset.css">
   </head>
   <body>
+    <nav>
+         
+      <ul>
+        <li><a href='/'>Homepage</a></li>
+        <li><a href=/searches/new>Search</a></li>
+      </ul>
+    </nav>
     <main>
+      <ul>
         <% searchResults.forEach( book => { %>
+          <li>
+          <div>
             <h3><%= book.title %></h3>
             <img src='<%=book.img.thumbnail %>'>
             <h4><%= book.authers %></h4>
             <p><%= book.description %></p>
         <% }) %>
+      </div>
+    </li>
+    </ul>
     </main>
   </body>
 </html>
