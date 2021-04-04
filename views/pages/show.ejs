@@ -2,11 +2,18 @@
 <html lang="en">
   <head>
     <title>Book Collection</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/reset.css">
   </head>
   <body>
     <main>
         <% searchResults.forEach( book => { %>
             <h3><%= book.title %></h3>
+            <img src='<%=book.img.thumbnail %>'>
+            <h4><%= book.authers %></h4>
+            <p><%= book.description %></p>
         <% }) %>
     </main>
   </body>
