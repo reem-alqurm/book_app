@@ -27,6 +27,15 @@
     </nav>
         <main>
           <h1>My Book Collection</h1>
+
+   
+        <% books.forEach( book => { %>
+       <div id="reem">
+      <h3><%= book.title %></h3>
+      <img src='<%=book.img.thumbnail %>'>
+      <h4><%= book.authers %></h4>
+      <p><%= book.description %></p>
+    </div><% }) %>
     
         </main>
       </body>
