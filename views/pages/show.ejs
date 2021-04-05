@@ -18,18 +18,16 @@
       </ul>
     </nav>
     <main>
-      <ul>
+     
         <% searchResults.forEach( book => { %>
-          <li>
-          <div>
-            <h3><%= book.title %></h3>
-            <img src='<%=book.img.thumbnail %>'>
-            <h4><%= book.authers %></h4>
-            <p><%= book.description %></p>
-        <% }) %>
-      </div>
-    </li>
-    </ul>
+       <div id="reem">
+      <h3><%= book.title %></h3>
+      <img src='<%=book.img.thumbnail %>'>
+      <h4>Book Authers :<%= book.authers %></h4> 
+      <h5>ISBN <%= book.isbn %></h5>
+      <p><%= book.description %></p>
+     
+    </div><% }) %>
     </main>
   </body>
 </html>
