@@ -61,14 +61,14 @@ function renderHomePage(request, response) {
   }) .catch(internalserverError(response));
 
 }
-function addBook (request, response) {
-  const sqlString = 'INSERT INTO book (img, bookTitle, authors, book_description, isbn) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
-  const sqlArray = [request.body.img, request.body.bookTitle, request.body.authors, request.body.book_description, request.body.isbn];
-  client.query(sqlString, sqlArray)
-  .then(result => {
-    const ejsObject = { book: request.body };
-    response.render('pages/books/detail.ejs', ejsObject);
-  })}
+// function addBook (request, response) {
+//   const sqlString = 'INSERT INTO book (img, bookTitle, authors, book_description, isbn) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+//   const sqlArray = [request.body.img, request.body.bookTitle, request.body.authors, request.body.book_description, request.body.isbn];
+//   client.query(sqlString, sqlArray)
+//   .then(result => {
+//     const ejsObject = { book: request.body };
+//     response.render('pages/books/detail.ejs', ejsObject);
+//   })}
 // function getSingleBook (req, res) {
 //   const sqlString = 'SELECT * FROM book WHERE id=$1;';
 //   const sqlArr = [req.params.id];
@@ -78,10 +78,6 @@ function addBook (request, response) {
 //     const ejsObject = { books: result.rows[0] };
 //     res.render('pages/books/detail.ejs', ejsObject);
 //   })
-//   .catch(errorThatComesBack => {
-//     res.render('pages/error.ejs');
-//     console.log(errorThatComesBack);
-//   });
 // };
 
 function showForm(request, response) {
