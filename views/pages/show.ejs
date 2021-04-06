@@ -22,11 +22,21 @@
         <% searchResults.forEach( book => { %>
        <div class="reem">
       <h3><%= book.booktitle %></h3>
-      <img src='<%=book.img.thumbnail %>'>
+      <img src='<%=book.img %>'>
       <h4>Book Authers :<%= book.authors %></h4> 
       <h5>ISBN <%= book.isbn %></h5>
       <p><%= book.description %></p>
      
+      
+      <form action="/books" method="post">
+        <input type="hidden" name="booktitle" value="<%= book.booktitle %>" >
+        <input type="hidden" name="img" value="<%=book.img %>">
+        <input type="hidden" name="authors" value="<%= book.authors %>">
+        <input type="hidden" name="isbn" value="<%= book.isbn %>">
+        <input type="hidden" name="description"value="<%= book.description %>" >
+
+        <button>Save to My list</button>
+      </form>
     </div><% }) %>
     </main>
   </body>

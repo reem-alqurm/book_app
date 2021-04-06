@@ -28,14 +28,14 @@ app.get('/searches/new', showForm);
 
 // Creates a new search to the Google Books API
 app.post('/searches', createSearch);
-app.get('/show',getSingleBook);
 
-// app.post('/books', addBook);
+app.post('/books', addBook );
 app.get('/books/:id([0-9]+)', getSingleBook);
 
 
+
 // Catch-all
-app.get('*', (request, response) => response.status(404).send('This route does not exist'));
+app.use('*', (request, response) => response.status(404).send('This route does not exist'));
 
 client.connect().then(() => {
   app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
@@ -46,7 +46,7 @@ client.connect().then(() => {
 function Book(info) {
   const placeholderImage = 'https://i.imgur.com/J5LVHEL.jpg';
   this.booktitle = info.title || 'No title available'; // shortcircuit
-  this.img = info.imageLinks || placeholderImage;
+  this.img = (info.imageLinks && info.imageLinks.thumbnail)? info.imageLinks.thumbnail: placeholderImage;
   this.description = info.description || 'No description available';
   this.authors = info.authers || 'No authers available';
   this.isbn = (info.industryIdentifiers && info.industryIdentifiers[0].identifier) ? info.industryIdentifiers[0].identifier : 'No ISBN Available';
@@ -76,14 +76,16 @@ function getSingleBook(request, response) {
       response.render('pages/books/show', { book: result.rows[0] })}).catch(internalserverError(response));
   }
 
-// function addBook (request, response) {
-//   const sqlString = 'INSERT INTO book (img, bookTitle, authors, book_description, isbn) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
-//   const sqlArray = [request.body.img, request.body.bookTitle, request.body.authors, request.body.book_description, request.body.isbn];
-//   client.query(sqlString, sqlArray)
-//   .then(result => {
-//     const ejsObject = { book: request.body };
-//     response.render('pages/books/detail.ejs', ejsObject);
-//   })}
+function addBook (request, response) {
+  const book = request.body;
+  const sql = 'INSERT INTO book (img,booktitle,authors , book_description,isbn ) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+  const values = [book.img, book.booktitle, book.authors, book.description, book.isbn];
+  client.query(sql, values)
+  .then(result => {
+    const ejsObject = { book: request.body };
+    response.redirect(`/books/${result.rows[0].id}`);
+  }).catch(internalserverError(response));
+}
 
 
 function showForm(request, response) {

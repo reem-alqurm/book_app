@@ -29,3 +29,7 @@ nav ul li {
     padding: 30px;
     font-family: 'Special Elite', cursive;
 }
+button {
+    background-color: beige;
+    margin-bottom: 10px ;
+}

@@ -31,20 +31,8 @@
 
     <span><%=total%></span>
     <% books.forEach( book=> { %>
-      <div class="reem">
-        <h3>
-          <%= book.booktitle %>
-        </h3>
-        <img src='<%= book.img %>'>
-        <h4>
-          <%= book.authors %>
-        </h4>
-        <p>
-          <%= book.book_description %>
-        </p>
-      </div>
-      <% }) %>
-
+    <%- include('books/detail', {book : book}) %>
+    <% }) %>
   </main>
 </body>
 
