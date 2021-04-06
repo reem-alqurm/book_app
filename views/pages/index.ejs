@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>    
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules.css">
-    <link rel="stylesheet" href="styles/reset.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
+  <link rel="stylesheet" href="styles/reset.css">
 
-    <head>
-        <title>Book Collection</title>
-      </head>
+  <head>
+    <title>Book Collection</title>
+  </head>
 
-      <body>
-        <nav>
-      <h1> HOMEPAGE </h1>
-      <ul>
-        <li><a href='/'>Homepage</a></li>
-        <li><a href=/searches/new>Search</a></li>
-      </ul>
-    </nav>
-        <main>
-          <h1>My Book Collection</h1>
+<body>
+  <nav>
+    <h1> HOMEPAGE </h1>
+    <ul>
+      <li><a href='/'>Homepage</a></li>
+      <li><a href=/searches/new>Search</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>My Book Collection</h1>
 
-   
-        <% books.forEach( book => { %>
-       <div id="reem">
-      <h3><%= book.title %></h3>
-      <img src='<%=book.img.thumbnail %>'>
-      <h4><%= book.authers %></h4>
-      <p><%= book.description %></p>
-    </div><% }) %>
-    
-        </main>
-      </body>
-    </html>
+    <span><%=total%></span>
+    <% books.forEach( book=> { %>
+      <div class="reem">
+        <h3>
+          <%= book.booktitle %>
+        </h3>
+        <img src='<%= book.img %>'>
+        <h4>
+          <%= book.authors %>
+        </h4>
+        <p>
+          <%= book.book_description %>
+        </p>
+      </div>
+      <% }) %>
+
+  </main>
+</body>
+
+</html>
