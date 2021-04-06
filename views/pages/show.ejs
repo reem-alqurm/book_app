@@ -20,10 +20,10 @@
     <main>
      
         <% searchResults.forEach( book => { %>
-       <div id="reem">
-      <h3><%= book.title %></h3>
+       <div class="reem">
+      <h3><%= book.booktitle %></h3>
       <img src='<%=book.img.thumbnail %>'>
-      <h4>Book Authers :<%= book.authers %></h4> 
+      <h4>Book Authers :<%= book.authors %></h4> 
       <h5>ISBN <%= book.isbn %></h5>
       <p><%= book.description %></p>
      

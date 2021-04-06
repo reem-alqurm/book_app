@@ -1,3 +1,1 @@
-  
-INSERT INTO book (img, bookTitle, authors, book_description, isbn) 
-VALUES('https://target.scene7.com/is/image/Target/GUEST_f23d73cf-1699-4248-a6bf-471ef08a4a65?wid=488&hei=488&fmt=pjpeg', 'Harry Potter Sticker Art Puzzles', 'Reem Alqurm', 'book description 1 goes here.' , '215585');
+INSERT INTO book (img, bookTitle, authors, book_description, isbn)VALUES('https://api.time.com/wp-content/uploads/2014/07/301386_full1.jpg?quality=85&w=766&h=512&crop=1', 'Harry Potter Sticker Art Puzzles', 'Reem Alqurm', 'book description 1 goes here.' , '215585');

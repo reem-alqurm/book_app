@@ -43,7 +43,7 @@ p::-webkit-scrollbar {
   width: 12px;               /* width of the entire scrollbar */
 }
 
-#reem {
+.reem {
   width: 460px;
   background-color:beige;
   margin: 15px 0;
@@ -51,7 +51,7 @@ p::-webkit-scrollbar {
   border: 3px solid #997b66;
   box-shadow: -5px -5px 10px #997b66;
 }
-#reem img {
+.reem img {
   width: 300px;
   border-radius: 12px;
   border: 3px solid #997b66;
@@ -67,6 +67,13 @@ p::-webkit-scrollbar {
 {
 
     div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 500px;
+  
+    }
+    section {
       display: flex;
       flex-direction: column;
       justify-content: center;
