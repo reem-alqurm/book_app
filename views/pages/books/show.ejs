@@ -21,6 +21,19 @@
     </nav>
     <main>
         <%- include ('detail', {book: book})%>
+
+        <form action="/updateBook/<%= book.id %>?_method=PUT" method="post">
+          <input type= "text" name="author" value="<%= book.authors %>">
+          <input type= "text" name="title" value="<%= book.booktitle %>">
+          <input type= "text" name="isbn" value="<%= book.isbn %>">
+          <input type= "text" name="image" value="<%= book.img  %>">
+          <input type= "text" name="description" value="<%= book.book_description %>">
+          <input id="form_button" type="submit" value="update" name="update book">
+      
+        </form>
+        <form action='/book/<%= book.id %>?_method=DELETE' method='POST'>
+          <input id="form_button" type='submit' value='Delete This book'>
+        </form>
        
     </main>
   </body>

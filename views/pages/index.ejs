@@ -32,7 +32,16 @@
     <span><%=total%></span>
     <% books.forEach( book=> { %>
     <%- include('books/detail', {book : book}) %>
-    <% }) %>
+ 
+
+    <form action='/books/<%= book.id %>' method='GET'>
+      <input type='hidden' name='authors' value='<%= book.authors%>'>
+      <input type='hidden' name='img' value='<%= book.img%>'>
+      <input type='hidden' name='bookTitle' value='<%= book.bookTitle%>'>
+      <input type='hidden' name='book_description' value='<%= book.book_description%>'>
+      <input type='hidden' name='isbn' value='<%= book.isbn%>'>
+      <input id="form_button" type='submit' value ='View Details'>
+    </form>   <% }) %>
   </main>
 </body>
 
