@@ -35,8 +35,8 @@ app.post('/searches', createSearch);
 app.post('/books', addBook );
 app.get('/books/:id([0-9]+)', getSingleBook);
 
-app.put('/books/:id([0-9]+)', putSingleBook);
-app.delete('/books/:id([0-9]+)', deleteSingleBook);
+app.put('/updateBook/:id([0-9]+)', putSingleBook);
+app.delete('/book/:id([0-9]+)', deleteSingleBook);
 
 // Catch-all
 app.use('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -116,11 +116,11 @@ function createSearch(request, response) {
 
      
        // Delete Book Route
-  function deleteSingleBook (request, response){
-    const book = request.body;
+  function deleteSingleBook (request, response)
+  {
+    const id = request.params.id;
     const sql = 'DELETE FROM book WHERE id=$1;';
-    const sqlArr = [book.id];
-    client.query(sql, sqlArr).then(result => {
+    client.query(sql, [id]).then(result => {
       response.redirect('/');
     })
     .catch(internalserverError(response));
@@ -128,12 +128,14 @@ function createSearch(request, response) {
 
   // Update Book Route
   function putSingleBook(request, response){
-    const book = request.body;
+    console.log("hellllo"); 
+     const id = request.params.id;
+    const book =request.body
     const sql = 'UPDATE book SET img=$1, booktitle=$2, authors=$3, book_description=$4, isbn=$5 WHERE id=$6;';
-    const sqlArr =[book.img, book.booktitle, book.authors, book.description, book.isbn, book.id];
+    const sqlArr =[book.image, book.title, book.author, book.description, book.isbn, id];
+    console.log(sqlArr);
     client.query(sql, sqlArr).then(result => {
-      const ejsObject = { book: request.body };
-    response.redirect(`/books/${result.rows[0].id}`);
+    response.redirect(`/`);
     })
     .catch(internalserverError(response));
   }
