@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
+
 
 // Application Setup
 const app = express();
@@ -18,6 +20,7 @@ app.use(express.static('public'));
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 // API Routes
 // Renders the home page
@@ -32,7 +35,8 @@ app.post('/searches', createSearch);
 app.post('/books', addBook );
 app.get('/books/:id([0-9]+)', getSingleBook);
 
-
+app.put('/books/:id([0-9]+)', putSingleBook);
+app.delete('/books/:id([0-9]+)', deleteSingleBook);
 
 // Catch-all
 app.use('*', (request, response) => response.status(404).send('This route does not exist'));
@@ -108,6 +112,32 @@ function createSearch(request, response) {
           .then(apiResponse => apiResponse.body.items.map(bookResult => new Book(bookResult.volumeInfo)))
           .then(results => response.render('pages/show', { searchResults: results })).catch(internalserverError(response));
       }
+
+
+     
+       // Delete Book Route
+  function deleteSingleBook (request, response){
+    const book = request.body;
+    const sql = 'DELETE FROM book WHERE id=$1;';
+    const sqlArr = [book.id];
+    client.query(sql, sqlArr).then(result => {
+      response.redirect('/');
+    })
+    .catch(internalserverError(response));
+  }
+
+  // Update Book Route
+  function putSingleBook(request, response){
+    const book = request.body;
+    const sql = 'UPDATE book SET img=$1, booktitle=$2, authors=$3, book_description=$4, isbn=$5 WHERE id=$6;';
+    const sqlArr =[book.img, book.booktitle, book.authors, book.description, book.isbn, book.id];
+    client.query(sql, sqlArr).then(result => {
+      const ejsObject = { book: request.body };
+    response.redirect(`/books/${result.rows[0].id}`);
+    })
+    .catch(internalserverError(response));
+  }
+
 
 function internalserverError(response) {
         return (error) => {
